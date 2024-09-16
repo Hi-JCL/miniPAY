@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/assets/minipayLogo.png" type="image/x-icon">
+    <title>miniPAY</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body id="body">
+    <p class="time-box" id="time-box"></p>
+    <div class="welcome " id="welcome">
+        <img src="./assets/minipay.png" class="welcomeLogo">
+    </div>
+    <header class="header height50" id="header">
+        <div class="logo-greet">
+            <img src="./assets/minipayLogo.png" alt="bankist logo" class="logo">
+            <p class="greet"> <span class="user" id="user-name"></span></p>
+        </div>
+        <div class="login-box">
+            <div class="login-field">
+                <input type="text" class="userId " id="userId" placeholder="username" autofocus>
+                <input type="password" class="userPw " id="userPw" placeholder="password">
+                <button class="signIn login" id="login">Login</button>
+                <button class="signIn logout hide" id="logout">Logout</button>
+                <button class="setting hide" id="setting"><img src="./assets/setting.svg" alt=""></button>
+            </div>
+            <button class="createAcc" id="createAcc">Open New Account</button>
+        </div>
+    </header>
+    <main>
+        <div class="dashboard hide" id="dashboard">
+            <div class="passbook" id="passbook">
+
+            </div>
+            <div class="services">
+                <div class="current-bal">
+                    <p class="serv-title">Current Balance</p>
+                    <p class="bal" id="bal">Rs 0</p>
+                </div>
+                <div class="transfer-box">
+                    <p class="serv-title">Transfer money</p>
+                    <input type="number" class="acc" id="acc" placeholder="Account Number">
+                    <div class="pay-box">
+                        <input type="number" class="amount" id="amount" placeholder="Amount">
+                        <button class="allBtn" id="pay">
+                            <img src="./assets/send.png" class="pay">
+                        </button>
+                    </div>
+                    <p class="msg" id="msg"></p>
+                </div>
+                <div class="loan-req-box">
+                    <p class="serv-title">Request loan</p>
+                    <input type="text" class="receiver-name" id="loan-reason" placeholder="Reason">
+                    <div class="pay-box">
+                        <input type="number" class="amount" id="loan-amount" placeholder="Amount">
+                        <button class="allBtn" id="loanBtn">
+                            <img src="./assets/send.png" class="pay">
+                        </button>
+                    </div>
+                    <p class="msg" id="msg">Max loan 1 lakh / day</p>
+                </div>
+                <div class="close-acc-box">
+                    <p class="serv-title">Close account</p>
+                    <input type="password" class="receiver-name" id="close-acc1" placeholder="Password">
+                    <div class="pay-box">
+                        <input type="password" class="amount" id="close-acc2" placeholder="Conform password">
+                        <button class="allBtn" id="closeBtn">
+                            <img src="./assets/send.png" class="pay">
+                        </button>
+                    </div>
+                    <p class="msg" id="closeMsg"></p>
+                </div>
+            </div>
+        </div>
+        <div class="overlay hide" id="overlay">
+            <div class="closeMsgBox">
+                <img src="./assets/close.svg" alt="close button" class="overlay-close" id="overlay-close">
+                <p class="msgBeforeClose" id="msgBeforeClose">Dear <span id="oluser"></span>, <br><br> 
+                    You have Rs <span id="olBal"></span> in your account
+                    <br> Transfer to someone or withdraw at your nearest ATM.
+                </p>     
+            </div>
+        </div>
+        <img src="./assets/atm.png" alt="atm image" class="atm-img" id="atm-img">
+        <audio src="./assets/withdrawSound.mp3" id="withdraw-sound" preload="auto"></audio>
+        <div class="atm-screen hide" id="atm-screen">
+            <img src="./assets/close.svg" alt="" class="atmclose" id="atmclose">
+            <p class="atm-wel">Welcome to miniPay ATM</p>
+            <div class="atm-login " id="atm-login">
+                <input type="text" class="atm-acc" id="atm-acc" placeholder="Account Number" maxlength="10">
+                <div class="atm-pw-box">
+                    <input type="password" class="atm-pw" id="atm-pw" placeholder="ATM Pin" maxlength="4">
+                    <div class="hr-box">
+                        <hr>
+                        <hr>
+                        <hr>
+                        <hr>
+                    </div>
+                </div>
+                <p class="atm-msg" id="atm-msg"></p>
+            </div>
+            <div class="screen-box hide" id="screen-box">
+                <div class="screen scr-bal" id="screen">
+
+                </div>
+                <div class="atm-fun">
+                    <button class="mini-stat" id="atm-mini">Mini Statement</button>
+                    <button class="mini-stat" id="atm-bal">Balance</button>
+                    <button class="mini-stat" id="atm-withdraw">Withdrawal</button>
+                </div>
+            </div>
+        </div>
+        <div class="overlay hide setting-container" id="setting-container">
+            <div class="setting-box">
+                <p>Edit Personal Details</p>
+                <div class="setting-input-box">
+                    <input type="text" id="chng-acc" class="c-acc" disabled>
+                </div>
+                <div class="setting-input-box">
+                    <input type="text" id="chng-fname" placeholder="New First Name" class="change-inputs" disabled>
+                    <div class="edit-btn">&nbsp;</div>
+                </div>
+                <div class="setting-input-box">
+                    <input type="text" id="chng-lname" placeholder="New Last Name" class="change-inputs" disabled>
+                    <div class="edit-btn">&nbsp;</div>
+                </div>
+                <div class="setting-input-box">
+                    <input type="text" id="chng-user-name" placeholder="New user-id" class="change-inputs" disabled>
+                    <div class="edit-btn">&nbsp;</div>
+                </div>
+                <div class="setting-input-box">
+                    <input type="number" id="chng-e-acc-pw" placeholder="New e-Account Password" class="change-inputs" disabled>
+                    <div class="edit-btn">&nbsp;</div>
+                </div>
+                <div class="setting-input-box">
+                    <input type="text" id="chng-ATM-pin" placeholder="New ATM Pin" maxlength="4" class="change-inputs" disabled>
+                    <div class="edit-btn">&nbsp;</div>
+                </div>                
+                <button class="save" id="save">SAVE</button>
+                <img src="./assets/close.svg"  class="overlay-close" id="setting-close">
+            </div>
+        </div>
+
+        <div class="new-acc-box hide" id="new-acc-box">
+            <img src="./assets/close.svg" class="overlay-close currAcc-close" id="open-acc-close">
+            <img src="./assets/minipay.png" class="mini">
+            <p class="desc">Welcome to MiniPay Bank <br>
+                The most secured bank not in the world but in Galaxy <br>
+                Your most valuable thing- The Money, are safe with us. <br>
+                And also your sensitive data, we do not sell data to any third parties <br>
+                we sell data to forth parties or fifth parties even sixth.
+            </p>
+            <p class="step">Now step into the safe zone and open your mini account</p>
+            <p id="new-msg" class="new-msg ">&nbsp;</p>
+
+            <div class="form">
+                    <label for="new-fname">First Name</label>
+                    <input type="text" id="new-name" placeholder="First Name" class="new-input">
+                    <label for="new-lname">Last Name</label>
+                    <input type="text" id="new-lname" placeholder="Last Name" class="new-input">
+                    <label for="new-acc">Account Number</label>
+                    <input type="text" id="new-acc" placeholder="Account Number (10-digit)" class="new-input" maxlength="10">
+                    <label for="new-userid">User Id</label>
+                    <input type="text" id="new-userid" placeholder="User Id (atleast 4-char)" class="new-input">
+                    <label for="new-epw">e-Account Password</label>
+                    <input type="text" id="new-epw" placeholder="e-password (atleast 4-digit)" class="new-input">
+                    <label for="new-atm-pin">ATM Pin</label>
+                    <input type="text" id="new-atm-pin" placeholder="Set ATM Pin (4-digit)" class="new-input" maxlength="4">
+                    <label for="">Deposited Amount</label>
+                    <input type="text" value="2000" class="damt" disabled>
+                    <button class="save-form" id="open-acc">Open Account</button>
+            </div>
+        </div>
+    </main>
+    <script src="./js/script.js"></script>
+</body>
+</html>
